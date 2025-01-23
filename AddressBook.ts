@@ -27,6 +27,12 @@ const addressBookFunction = () => {
     console.log("1: Add Contact");
 
     const operation: number = parseInt(readlineSync.question("Choose: "));
+    switch(operation){
+        case 1:
+            let newContact: Contact=createContact();
+            addressBook.addContant(newContact);
+            break;
+    }
 }
 
 addressBookFunction();
