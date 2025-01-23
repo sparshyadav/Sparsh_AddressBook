@@ -5,5 +5,6 @@
 - UseCase 5: Ability to Add Multiple Person to Address Book.
 - UseCase 6: Refactor to Add Multiple Address Books to the System. Each Address Book has a Unique Name.
 - UseCase 7: Ability to Ensure there is no Duplicate Entry of the Same Person in a Particular Address Book.
-- UseCase 8: Ability to Search Person in a City or State Across the Multiple Address Book
-- UseCase 9: Ability to View Persons by City or State 
+- UseCase 8: Ability to Search Person in a City or State Across the Multiple Address Book.
+- UseCase 9: Ability to View Persons by City or State.
+- UseCase 10: Ability to Get Mumber of Contact Persons i.e. Count by City or State.
