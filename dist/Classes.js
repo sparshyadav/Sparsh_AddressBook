@@ -81,6 +81,12 @@ class AddressBookManager {
     getAllAddressBooks() {
         return this.listOfAddressBooks;
     }
+    getAllContacts() {
+        let allContacts = this.getAllAddressBooks().map((con) => {
+            return con.data;
+        });
+        return allContacts;
+    }
     addAddressBook(addressBook) {
         this.listOfAddressBooks.push(addressBook);
     }
