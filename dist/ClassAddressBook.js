@@ -5,9 +5,12 @@ class AddressBook {
     constructor() {
         this.addressBook = [];
     }
+    getAllContacts() {
+        return this.addressBook;
+    }
     addContant(contact) {
         this.addressBook.push(contact);
-        return "Contact Added Successfully";
+        console.log("Contact Added Successfully");
     }
 }
 exports.AddressBook = AddressBook;
