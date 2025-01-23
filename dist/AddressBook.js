@@ -115,6 +115,24 @@ function viewByState(addressBookHandler) {
         console.log("No contact found with that name.");
     }
 }
+function countByState(addressBookHandler) {
+    const stateToSearch = readline_sync_1.default.question("Enter the State You Want to Search: ");
+    let flatList = addressBookHandler.getAllContacts().flat();
+    let searchedContacts = flatList.reduce((count, contact) => {
+        if (contact.state === stateToSearch) {
+            return count + 1;
+        }
+        else {
+            return count;
+        }
+    }, 0);
+    if (searchedContacts > 0) {
+        console.log(`Contact(s) found in ${stateToSearch}: ${searchedContacts}`);
+    }
+    else {
+        console.log(`No contact found in the state: ${stateToSearch}`);
+    }
+}
 const addressBookManagerFunction = () => {
     console.log("Welcome to the Address Book Manager");
     let addressBookHandler = new Classes_1.AddressBookManager();
@@ -123,6 +141,7 @@ const addressBookManagerFunction = () => {
         console.log("1: Add Address Book");
         console.log("2: Search Contact");
         console.log("3: View Contact by State");
+        console.log("4: Count Contacts by State");
         console.log("9: Exit the Program");
         const operation = parseInt(readline_sync_1.default.question("Choose: "));
         switch (operation) {
@@ -138,6 +157,9 @@ const addressBookManagerFunction = () => {
                 break;
             case 3:
                 viewByState(addressBookHandler);
+                break;
+            case 4:
+                countByState(addressBookHandler);
                 break;
             case 9:
                 console.log("Exiting the Address Book Manager...");
