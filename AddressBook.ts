@@ -1,4 +1,5 @@
-import readlineSync from "readline-sync";
+import readlineSync from "readline-sync"
+import fs from "fs";
 import { Contact, singleAddressBook } from "./Interfaces";
 import { AddressBook, AddressBookManager } from "./Classes";
 
@@ -214,6 +215,12 @@ function sortSpecificAddressBookByAddress(addressBookHandler: AddressBookManager
     console.log("Sorted Contacts:", selectedBook.data);
 }
 
+const saveAllAddressBooksToFile = (fileName: string, addressBookHandler: AddressBookManager): void => {
+    const allAddressBooks = addressBookHandler.getAllAddressBooks();
+    const dataToSave = JSON.stringify(allAddressBooks, null, 2);
+    fs.writeFileSync(fileName, dataToSave, "utf8");
+    console.log(`All address books have been saved to ${fileName}`);
+};
 
 const addressBookManagerFunction = () => {
     console.log("Welcome to the Address Book Manager");
@@ -227,6 +234,7 @@ const addressBookManagerFunction = () => {
         console.log("4: Count Contacts by State");
         console.log("5: Sort Address Book by Contact Name");
         console.log("6: Sort Address Book by Address");
+        console.log("7: ")
         console.log("9: Exit the Program");
 
         const operation: number = parseInt(readlineSync.question("Choose: "));
@@ -252,6 +260,10 @@ const addressBookManagerFunction = () => {
                 break;
             case 6:
                 sortSpecificAddressBookByAddress(addressBookHandler);
+                break;
+            case 7:
+                const fileName = readlineSync.question("Enter the file name to save all address books (e.g., addressBooks.json): ");
+                saveAllAddressBooksToFile(fileName, addressBookHandler);
                 break;
             case 9:
                 console.log("Exiting the Address Book Manager...");
