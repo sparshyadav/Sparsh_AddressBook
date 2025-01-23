@@ -30,6 +30,19 @@ const deleteContact = () => {
     return nameToDelete;
 }
 
+const addMultipleContacts = () => {
+    const numberOfContacts: number = parseInt(readlineSync.question("Enter the Number of Contacts You Want to Add: "));
+
+    let multipleContacts = [];
+    for (let i = 1; i <= numberOfContacts; i++) {
+        console.log("Enter the Details of Contact: ", i);
+        let contact = createContact();
+        multipleContacts.push(contact);
+    }
+
+    return multipleContacts;
+}
+
 const addressBookFunction = () => {
     console.log("Welcome to Address Book");
     let addressBook = new AddressBook();
@@ -40,6 +53,7 @@ const addressBookFunction = () => {
         console.log("1: Add Contact");
         console.log("2: Edit Contact");
         console.log("3: Delete Contact");
+        console.log("4: Add Multiple Contacts");
 
         const operation: number = parseInt(readlineSync.question("Choose: "));
         switch (operation) {
@@ -56,9 +70,12 @@ const addressBookFunction = () => {
                 addressBook.editContact(nameToEdit);
                 break;
             case 3:
-                let nameToDelete=deleteContact();
+                let nameToDelete = deleteContact();
                 addressBook.deleteContact(nameToDelete);
                 break;
+            case 4:
+                let multipleContacts = addMultipleContacts();
+                addressBook.addMultipleContacts(multipleContacts);
         }
     }
 }
