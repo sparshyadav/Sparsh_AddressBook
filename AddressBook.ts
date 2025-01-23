@@ -110,9 +110,6 @@ function addAddressBook(addressBookHandler: AddressBookManager): void {
     console.log(`Address book "${nameOfAddressBook}" created successfully with data.`);
 }
 
-
-
-
 const addressBookManagerFunction = () => {
     console.log("Welcome to the Address Book Manager");
     let addressBookHandler = new AddressBookManager();
