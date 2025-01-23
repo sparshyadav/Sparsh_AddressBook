@@ -234,7 +234,7 @@ const addressBookManagerFunction = () => {
         console.log("4: Count Contacts by State");
         console.log("5: Sort Address Book by Contact Name");
         console.log("6: Sort Address Book by Address");
-        console.log("7: ")
+        console.log("7: Save Address Book to File")
         console.log("9: Exit the Program");
 
         const operation: number = parseInt(readlineSync.question("Choose: "));
@@ -262,7 +262,7 @@ const addressBookManagerFunction = () => {
                 sortSpecificAddressBookByAddress(addressBookHandler);
                 break;
             case 7:
-                const fileName = readlineSync.question("Enter the file name to save all address books (e.g., addressBooks.json): ");
+                const fileName = readlineSync.question("Enter the file name to save all address books: ");
                 saveAllAddressBooksToFile(fileName, addressBookHandler);
                 break;
             case 9:
