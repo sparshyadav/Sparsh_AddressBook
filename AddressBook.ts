@@ -22,8 +22,12 @@ const createContact = () => {
 
 const editContact = () => {
     const nameToEdit: string = readlineSync.question("Enter the Name of the Contact You Want to Edit: ");
-    console.log(nameToEdit);
     return nameToEdit;
+}
+
+const deleteContact = () => {
+    const nameToDelete: string = readlineSync.question("Enter the Name of the Contact You Want to Delete: ");
+    return nameToDelete;
 }
 
 const addressBookFunction = () => {
@@ -35,6 +39,7 @@ const addressBookFunction = () => {
         console.log("0: Get All Contacts");
         console.log("1: Add Contact");
         console.log("2: Edit Contact");
+        console.log("3: Delete Contact");
 
         const operation: number = parseInt(readlineSync.question("Choose: "));
         switch (operation) {
@@ -49,6 +54,11 @@ const addressBookFunction = () => {
             case 2:
                 let nameToEdit = editContact();
                 addressBook.editContact(nameToEdit);
+                break;
+            case 3:
+                let nameToDelete=deleteContact();
+                addressBook.deleteContact(nameToDelete);
+                break;
         }
     }
 }
