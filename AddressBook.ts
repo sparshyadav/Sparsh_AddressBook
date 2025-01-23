@@ -85,17 +85,32 @@ const addressBookFunction = (bookName: string): AddressBook => {
     }
 }
 
-function addAddressBook(): singleAddressBook {
+function addAddressBook(addressBookHandler: AddressBookManager): void {
     const nameOfAddressBook: string = readlineSync.question("Enter the Name of the Address Book: ");
-    const addressBook = addressBookFunction(nameOfAddressBook);
 
-    const singleAddressBook: singleAddressBook = {
+    const isDuplicate = addressBookHandler.getAllAddressBooks().some(
+        (book) => book.addressBookName === nameOfAddressBook
+    );
+
+    if (isDuplicate) {
+        console.log(`An address book with the name "${nameOfAddressBook}" already exists. Cannot create a duplicate.`);
+        return;
+    }
+
+    console.log(`Creating a new address book: ${nameOfAddressBook}`);
+
+    const data = addressBookFunction(nameOfAddressBook);
+
+    const newAddressBook: singleAddressBook = {
         addressBookName: nameOfAddressBook,
-        data: addressBook.getAllContacts(),
+        data: data.getAllContacts()
     };
 
-    return singleAddressBook;
+    addressBookHandler.addAddressBook(newAddressBook);
+    console.log(`Address book "${nameOfAddressBook}" created successfully with data.`);
 }
+
+
 
 
 const addressBookManagerFunction = () => {
@@ -114,14 +129,14 @@ const addressBookManagerFunction = () => {
                 console.log(allAddressBooks);
                 break;
             case 1:
-                let book = addAddressBook();
-                addressBookHandler.addAddressBook(book);
+                addAddressBook(addressBookHandler);
                 break;
             case 9:
                 console.log("Exiting the Address Book Manager...");
                 return;
         }
     }
-}
+};
+
 
 addressBookManagerFunction();
