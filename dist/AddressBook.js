@@ -4,6 +4,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const readline_sync_1 = __importDefault(require("readline-sync"));
+const fs_1 = __importDefault(require("fs"));
 const Classes_1 = require("./Classes");
 // UC1 - Ability to Create a New Contact
 const createContact = () => {
@@ -149,11 +150,36 @@ function sortSpecificAddressBook(addressBookHandler) {
         return;
     }
     const selectedBook = allAddressBooks[bookIndex];
-    // Sort the contacts in the selected address book
     selectedBook.data.sort((a, b) => a.firstName.localeCompare(b.firstName));
     console.log(`Address book "${selectedBook.addressBookName}" has been sorted alphabetically by name.`);
     console.log("Sorted Contacts:", selectedBook.data);
 }
+function sortSpecificAddressBookByAddress(addressBookHandler) {
+    const allAddressBooks = addressBookHandler.getAllAddressBooks();
+    if (allAddressBooks.length === 0) {
+        console.log("No address books available to sort.");
+        return;
+    }
+    console.log("Available Address Books:");
+    allAddressBooks.forEach((book, index) => {
+        console.log(`${index + 1}: ${book.addressBookName}`);
+    });
+    const bookIndex = parseInt(readline_sync_1.default.question("Enter the number of the Address Book to sort by address: ")) - 1;
+    if (bookIndex < 0 || bookIndex >= allAddressBooks.length) {
+        console.log("Invalid choice. Please select a valid address book.");
+        return;
+    }
+    const selectedBook = allAddressBooks[bookIndex];
+    selectedBook.data.sort((a, b) => a.address.localeCompare(b.address));
+    console.log(`Address book "${selectedBook.addressBookName}" has been sorted alphabetically by address.`);
+    console.log("Sorted Contacts:", selectedBook.data);
+}
+const saveAllAddressBooksToFile = (fileName, addressBookHandler) => {
+    const allAddressBooks = addressBookHandler.getAllAddressBooks();
+    const dataToSave = JSON.stringify(allAddressBooks, null, 2);
+    fs_1.default.writeFileSync(fileName, dataToSave, "utf8");
+    console.log(`All address books have been saved to ${fileName}`);
+};
 const addressBookManagerFunction = () => {
     console.log("Welcome to the Address Book Manager");
     let addressBookHandler = new Classes_1.AddressBookManager();
@@ -163,7 +189,9 @@ const addressBookManagerFunction = () => {
         console.log("2: Search Contact");
         console.log("3: View Contact by State");
         console.log("4: Count Contacts by State");
-        console.log("5: Sort Address Book");
+        console.log("5: Sort Address Book by Contact Name");
+        console.log("6: Sort Address Book by Address");
+        console.log("7: Save Address Book to File");
         console.log("9: Exit the Program");
         const operation = parseInt(readline_sync_1.default.question("Choose: "));
         switch (operation) {
@@ -185,6 +213,13 @@ const addressBookManagerFunction = () => {
                 break;
             case 5:
                 sortSpecificAddressBook(addressBookHandler);
+                break;
+            case 6:
+                sortSpecificAddressBookByAddress(addressBookHandler);
+                break;
+            case 7:
+                const fileName = readline_sync_1.default.question("Enter the file name to save all address books: ");
+                saveAllAddressBooksToFile(fileName, addressBookHandler);
                 break;
             case 9:
                 console.log("Exiting the Address Book Manager...");
