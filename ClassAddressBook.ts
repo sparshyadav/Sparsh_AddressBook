@@ -47,5 +47,15 @@ export class AddressBook {
             console.log("Contact Edited Successfully");
         }
     }
+
+    deleteContact(contactName: string): void {
+        let newContactsList = this.addressBook.filter((obj) => {
+            return obj.firstName != contactName;
+        })
+
+        this.addressBook = newContactsList;
+
+        console.log("Contact Edited Successfully");
+    }
 }
 
