@@ -110,6 +110,19 @@ function addAddressBook(addressBookHandler: AddressBookManager): void {
     console.log(`Address book "${nameOfAddressBook}" created successfully with data.`);
 }
 
+function searchContact(addressBookHandler: AddressBookManager) {
+    const contactToSearch: string = readlineSync.question("Enter the Name of the Contact You Want to Search: ");
+
+    let flatList = addressBookHandler.getAllContacts().flat();
+    let searchedContacts = flatList.filter((contact) => contact.firstName === contactToSearch);
+
+    if (searchedContacts.length > 0) {
+        console.log("Contact(s) found:", searchedContacts);
+    } else {
+        console.log("No contact found with that name.");
+    }
+}
+
 const addressBookManagerFunction = () => {
     console.log("Welcome to the Address Book Manager");
     let addressBookHandler = new AddressBookManager();
@@ -117,6 +130,7 @@ const addressBookManagerFunction = () => {
     while (true) {
         console.log("0: Get All Address Books");
         console.log("1: Add Address Book");
+        console.log("2: Search Contact");
         console.log("9: Exit the Program");
 
         const operation: number = parseInt(readlineSync.question("Choose: "));
@@ -128,6 +142,8 @@ const addressBookManagerFunction = () => {
             case 1:
                 addAddressBook(addressBookHandler);
                 break;
+            case 2:
+                searchContact(addressBookHandler)
             case 9:
                 console.log("Exiting the Address Book Manager...");
                 return;
