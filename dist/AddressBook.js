@@ -57,7 +57,7 @@ const addressBookFunction = (bookName) => {
                 break;
             case 1:
                 let newContact = createContact();
-                addressBook.addContant(newContact);
+                addressBook.addContact(newContact);
                 break;
             case 2:
                 let nameToEdit = editContact();
@@ -85,7 +85,6 @@ function addAddressBook(addressBookHandler) {
         return;
     }
     console.log(`Creating a new address book: ${nameOfAddressBook}`);
-    const addressBook = new Classes_1.AddressBook();
     const data = addressBookFunction(nameOfAddressBook);
     const newAddressBook = {
         addressBookName: nameOfAddressBook,

@@ -12,9 +12,16 @@ class AddressBook {
     getAllContacts() {
         return this.addressBook;
     }
-    addContant(contact) {
-        this.addressBook.push(contact);
-        console.log("Contact Added Successfully");
+    addContact(contact) {
+        const isDuplicate = this.addressBook.some((existingContact) => existingContact.firstName.toLowerCase() === contact.firstName.toLowerCase() &&
+            existingContact.lastName.toLowerCase() === contact.lastName.toLowerCase());
+        if (isDuplicate) {
+            console.log(`Contact with the name "${contact.firstName} ${contact.lastName}" already exists in the address book.`);
+        }
+        else {
+            this.addressBook.push(contact);
+            console.log(`Contact "${contact.firstName} ${contact.lastName}" added successfully.`);
+        }
     }
     editContact(contactName) {
         let objectToEdit = this.addressBook.find((obj) => {
@@ -60,7 +67,7 @@ class AddressBook {
     }
     addMultipleContacts(multipleContacts) {
         multipleContacts.forEach((contact) => {
-            this.addContant(contact);
+            this.addContact(contact);
         });
         console.log("Multiple Contacts Added Successfully");
     }
