@@ -1,6 +1,6 @@
 import readlineSync from "readline-sync";
-import { Contact } from "./ContactInterface";
-import { AddressBook } from "./ClassAddressBook";
+import { Contact, singleAddressBook } from "./Interfaces";
+import { AddressBook, AddressBookManager } from "./Classes";
 
 // UC1 - Ability to Create a New Contact
 const createContact = () => {
@@ -43,8 +43,8 @@ const addMultipleContacts = () => {
     return multipleContacts;
 }
 
-const addressBookFunction = () => {
-    console.log("Welcome to Address Book");
+const addressBookFunction = (bookName: string): AddressBook => {
+    console.log(`Welcome to ${bookName} Address Book`);
     let addressBook = new AddressBook();
 
     while (true) {
@@ -54,6 +54,7 @@ const addressBookFunction = () => {
         console.log("2: Edit Contact");
         console.log("3: Delete Contact");
         console.log("4: Add Multiple Contacts");
+        console.log("9: Exit the Program")
 
         const operation: number = parseInt(readlineSync.question("Choose: "));
         switch (operation) {
@@ -76,8 +77,51 @@ const addressBookFunction = () => {
             case 4:
                 let multipleContacts = addMultipleContacts();
                 addressBook.addMultipleContacts(multipleContacts);
+                break;
+            case 9:
+                console.log(`Exiting ${bookName} Address Book...`);
+                return addressBook;
         }
     }
 }
 
-addressBookFunction();
+function addAddressBook(): singleAddressBook {
+    const nameOfAddressBook: string = readlineSync.question("Enter the Name of the Address Book: ");
+    const addressBook = addressBookFunction(nameOfAddressBook);
+
+    const singleAddressBook: singleAddressBook = {
+        addressBookName: nameOfAddressBook,
+        data: addressBook.getAllContacts(),
+    };
+
+    return singleAddressBook;
+}
+
+
+const addressBookManagerFunction = () => {
+    console.log("Welcome to the Address Book Manager");
+    let addressBookHandler = new AddressBookManager();
+
+    while (true) {
+        console.log("0: Get All Address Books");
+        console.log("1: Add Address Book");
+        console.log("9: Exit the Program");
+
+        const operation: number = parseInt(readlineSync.question("Choose: "));
+        switch (operation) {
+            case 0:
+                let allAddressBooks = addressBookHandler.getAllAddressBooks();
+                console.log(allAddressBooks);
+                break;
+            case 1:
+                let book = addAddressBook();
+                addressBookHandler.addAddressBook(book);
+                break;
+            case 9:
+                console.log("Exiting the Address Book Manager...");
+                return;
+        }
+    }
+}
+
+addressBookManagerFunction();
