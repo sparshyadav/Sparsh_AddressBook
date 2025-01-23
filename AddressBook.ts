@@ -186,6 +186,34 @@ function sortSpecificAddressBook(addressBookHandler: AddressBookManager): void {
     console.log("Sorted Contacts:", selectedBook.data);
 }
 
+function sortSpecificAddressBookByAddress(addressBookHandler: AddressBookManager): void {
+    const allAddressBooks = addressBookHandler.getAllAddressBooks();
+
+    if (allAddressBooks.length === 0) {
+        console.log("No address books available to sort.");
+        return;
+    }
+
+    console.log("Available Address Books:");
+    allAddressBooks.forEach((book, index) => {
+        console.log(`${index + 1}: ${book.addressBookName}`);
+    });
+
+    const bookIndex: number = parseInt(readlineSync.question("Enter the number of the Address Book to sort by address: ")) - 1;
+
+    if (bookIndex < 0 || bookIndex >= allAddressBooks.length) {
+        console.log("Invalid choice. Please select a valid address book.");
+        return;
+    }
+
+    const selectedBook = allAddressBooks[bookIndex];
+
+    selectedBook.data.sort((a, b) => a.address.localeCompare(b.address));
+
+    console.log(`Address book "${selectedBook.addressBookName}" has been sorted alphabetically by address.`);
+    console.log("Sorted Contacts:", selectedBook.data);
+}
+
 
 const addressBookManagerFunction = () => {
     console.log("Welcome to the Address Book Manager");
@@ -198,7 +226,7 @@ const addressBookManagerFunction = () => {
         console.log("3: View Contact by State");
         console.log("4: Count Contacts by State");
         console.log("5: Sort Address Book by Contact Name");
-        console.log("5: Sort Address Book by Address");
+        console.log("6: Sort Address Book by Address");
         console.log("9: Exit the Program");
 
         const operation: number = parseInt(readlineSync.question("Choose: "));
@@ -221,6 +249,9 @@ const addressBookManagerFunction = () => {
                 break;
             case 5:
                 sortSpecificAddressBook(addressBookHandler);
+                break;
+            case 6:
+                sortSpecificAddressBookByAddress(addressBookHandler);
                 break;
             case 9:
                 console.log("Exiting the Address Book Manager...");
