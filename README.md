@@ -1,1 +1,12 @@
-- UseCase 1: Ability to create a Contacts in Address Book with first and last names, address, city, state, zip, phone number and email.
+- UseCase 1: Ability to create a Contacts in Address Book with First, Last Name, Address, City, State, Zip, Phone Number and Email.
+- UseCase 2: Ability to Add a New Contact to Address Book.
+- UseCase 3: Ability to Edit Existing Contact Person using their Name.
+- UseCase 4: Ability to Delte existing Contact Person using their Name.
+- UseCase 5: Ability to Add Multiple Person to Address Book.
+- UseCase 6: Refactor to Add Multiple Address Books to the System. Each Address Book has a Unique Name.
+- UseCase 7: Ability to Ensure there is no Duplicate Entry of the Same Person in a Particular Address Book.
+- UseCase 8: Ability to Search Person in a City or State Across the Multiple Address Book.
+- UseCase 9: Ability to View Persons by City or State.
+- UseCase 10: Ability to Get Mumber of Contact Persons i.e. Count by City or State.
+- UseCase 11: Ability to Sort the Entries in the Address Book Alphabetically by Person’s Name.
+- UseCase 12: Ability to Sort the Entries in the Address Book by City, State, or Zip.
