@@ -20,18 +20,36 @@ const createContact = () => {
     return newContact;
 }
 
-const addressBookFunction = () => {
-    let addressBook = new AddressBook();
-    console.log("Welcome to Address Book");
-    console.log("Operations: ");
-    console.log("1: Add Contact");
+const editContact = () => {
+    const nameToEdit: string = readlineSync.question("Enter the Name of the Contact You Want to Edit: ");
+    console.log(nameToEdit);
+    return nameToEdit;
+}
 
-    const operation: number = parseInt(readlineSync.question("Choose: "));
-    switch(operation){
-        case 1:
-            let newContact: Contact=createContact();
-            addressBook.addContant(newContact);
-            break;
+const addressBookFunction = () => {
+    console.log("Welcome to Address Book");
+    let addressBook = new AddressBook();
+
+    while (true) {
+        console.log("Operations: ");
+        console.log("0: Get All Contacts");
+        console.log("1: Add Contact");
+        console.log("2: Edit Contact");
+
+        const operation: number = parseInt(readlineSync.question("Choose: "));
+        switch (operation) {
+            case 0:
+                let contacts = addressBook.getAllContacts();
+                console.log(contacts);
+                break;
+            case 1:
+                let newContact: Contact = createContact();
+                addressBook.addContant(newContact);
+                break;
+            case 2:
+                let nameToEdit = editContact();
+                addressBook.editContact(nameToEdit);
+        }
     }
 }
 
