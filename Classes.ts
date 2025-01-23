@@ -88,6 +88,14 @@ export class AddressBookManager {
         return this.listOfAddressBooks;
     }
 
+    getAllContacts(): Contact[][] {
+        let allContacts = this.getAllAddressBooks().map((con) => {
+            return con.data;
+        });
+
+        return allContacts;
+    }
+
     addAddressBook(addressBook: singleAddressBook): void {
         this.listOfAddressBooks.push(addressBook);
     }
