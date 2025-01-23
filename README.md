@@ -1,3 +1,5 @@
-- UseCase 1: Ability to create a Contacts in Address Book with first and last names, address, city, state, zip, phone number and email.
-- UseCase 2: Ability to add a new Contact to Address Book
-- UseCase 3: Ability to edit existing contact person using their name
+- UseCase 1: Ability to create a Contacts in Address Book with First, Last Name, Address, City, State, Zip, Phone Number and Email.
+- UseCase 2: Ability to Add a New Contact to Address Book.
+- UseCase 3: Ability to Edit Existing Contact Person using their Name.
+- UseCase 4: Ability to Delte existing Contact Person using their Name.
+- UseCase 5: Ability to Add Multiple Person to Address Book.
