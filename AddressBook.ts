@@ -64,7 +64,7 @@ const addressBookFunction = (bookName: string): AddressBook => {
                 break;
             case 1:
                 let newContact: Contact = createContact();
-                addressBook.addContant(newContact);
+                addressBook.addContact(newContact);
                 break;
             case 2:
                 let nameToEdit = editContact();
