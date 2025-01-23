@@ -71,6 +71,9 @@ class AddressBook {
         });
         console.log("Multiple Contacts Added Successfully");
     }
+    sortContactsByName() {
+        return this.addressBook.sort((a, b) => a.firstName.localeCompare(b.firstName));
+    }
 }
 exports.AddressBook = AddressBook;
 class AddressBookManager {
