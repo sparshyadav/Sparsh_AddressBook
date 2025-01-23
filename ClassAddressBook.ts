@@ -7,9 +7,13 @@ export class AddressBook {
         this.addressBook = [];
     }
 
-    addContant(contact: Contact): string {
+    getAllContacts(): Contact[] {
+        return this.addressBook;
+    }
+
+    addContant(contact: Contact): void {
         this.addressBook.push(contact);
-        return "Contact Added Successfully";
+        console.log("Contact Added Successfully");
     }
 }
 
