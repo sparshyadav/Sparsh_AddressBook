@@ -20,17 +20,33 @@ const createContact = () => {
     };
     return newContact;
 };
+const editContact = () => {
+    const nameToEdit = readline_sync_1.default.question("Enter the Name of the Contact You Want to Edit: ");
+    console.log(nameToEdit);
+    return nameToEdit;
+};
 const addressBookFunction = () => {
-    let addressBook = new ClassAddressBook_1.AddressBook();
     console.log("Welcome to Address Book");
-    console.log("Operations: ");
-    console.log("1: Add Contact");
-    const operation = parseInt(readline_sync_1.default.question("Choose: "));
-    switch (operation) {
-        case 1:
-            let newContact = createContact();
-            addressBook.addContant(newContact);
-            break;
+    let addressBook = new ClassAddressBook_1.AddressBook();
+    while (true) {
+        console.log("Operations: ");
+        console.log("0: Get All Contacts");
+        console.log("1: Add Contact");
+        console.log("2: Edit Contact");
+        const operation = parseInt(readline_sync_1.default.question("Choose: "));
+        switch (operation) {
+            case 0:
+                let contacts = addressBook.getAllContacts();
+                console.log(contacts);
+                break;
+            case 1:
+                let newContact = createContact();
+                addressBook.addContant(newContact);
+                break;
+            case 2:
+                let nameToEdit = editContact();
+                addressBook.editContact(nameToEdit);
+        }
     }
 };
 addressBookFunction();
