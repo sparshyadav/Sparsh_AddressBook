@@ -93,12 +93,36 @@ function addAddressBook(addressBookHandler) {
     addressBookHandler.addAddressBook(newAddressBook);
     console.log(`Address book "${nameOfAddressBook}" created successfully with data.`);
 }
+function searchContact(addressBookHandler) {
+    const contactToSearch = readline_sync_1.default.question("Enter the Name of the Contact You Want to Search: ");
+    let flatList = addressBookHandler.getAllContacts().flat();
+    let searchedContacts = flatList.filter((contact) => contact.firstName === contactToSearch);
+    if (searchedContacts.length > 0) {
+        console.log("Contact(s) found:", searchedContacts);
+    }
+    else {
+        console.log("No contact found with that name.");
+    }
+}
+function viewByState(addressBookHandler) {
+    const stateToSearch = readline_sync_1.default.question("Enter the State You Want to Search: ");
+    let flatList = addressBookHandler.getAllContacts().flat();
+    let searchedContacts = flatList.filter((contact) => contact.state === stateToSearch);
+    if (stateToSearch.length > 0) {
+        console.log("Contact(s) found:", searchedContacts);
+    }
+    else {
+        console.log("No contact found with that name.");
+    }
+}
 const addressBookManagerFunction = () => {
     console.log("Welcome to the Address Book Manager");
     let addressBookHandler = new Classes_1.AddressBookManager();
     while (true) {
         console.log("0: Get All Address Books");
         console.log("1: Add Address Book");
+        console.log("2: Search Contact");
+        console.log("3: View Contact by State");
         console.log("9: Exit the Program");
         const operation = parseInt(readline_sync_1.default.question("Choose: "));
         switch (operation) {
@@ -108,6 +132,12 @@ const addressBookManagerFunction = () => {
                 break;
             case 1:
                 addAddressBook(addressBookHandler);
+                break;
+            case 2:
+                searchContact(addressBookHandler);
+                break;
+            case 3:
+                viewByState(addressBookHandler);
                 break;
             case 9:
                 console.log("Exiting the Address Book Manager...");
