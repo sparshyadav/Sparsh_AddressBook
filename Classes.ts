@@ -67,18 +67,18 @@ export class AddressBook {
     }
 }
 
-export class AddressBookManager{
-    public listOfAddressBooks: singleAddressBook[]=[];
+export class AddressBookManager {
+    public listOfAddressBooks: singleAddressBook[] = [];
 
-    constructor(){
-        this.listOfAddressBooks=[];
+    constructor() {
+        this.listOfAddressBooks = [];
     }
 
-    getAllAddressBooks():singleAddressBook[]{
+    getAllAddressBooks(): singleAddressBook[] {
         return this.listOfAddressBooks;
     }
 
-    addAddressBook(addressBook: singleAddressBook): void{
+    addAddressBook(addressBook: singleAddressBook): void {
         this.listOfAddressBooks.push(addressBook);
     }
 }
