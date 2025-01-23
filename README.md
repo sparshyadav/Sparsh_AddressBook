@@ -8,3 +8,5 @@
 - UseCase 8: Ability to Search Person in a City or State Across the Multiple Address Book.
 - UseCase 9: Ability to View Persons by City or State.
 - UseCase 10: Ability to Get Mumber of Contact Persons i.e. Count by City or State.
+- UseCase 11: Ability to Sort the Entries in the Address Book Alphabetically by Person’s Name.
+- UseCase 12: Ability to Sort the Entries in the Address Book by City, State, or Zip.
