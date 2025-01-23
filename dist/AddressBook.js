@@ -28,6 +28,16 @@ const deleteContact = () => {
     const nameToDelete = readline_sync_1.default.question("Enter the Name of the Contact You Want to Delete: ");
     return nameToDelete;
 };
+const addMultipleContacts = () => {
+    const numberOfContacts = parseInt(readline_sync_1.default.question("Enter the Number of Contacts You Want to Add: "));
+    let multipleContacts = [];
+    for (let i = 1; i <= numberOfContacts; i++) {
+        console.log("Enter the Details of Contact: ", i);
+        let contact = createContact();
+        multipleContacts.push(contact);
+    }
+    return multipleContacts;
+};
 const addressBookFunction = () => {
     console.log("Welcome to Address Book");
     let addressBook = new ClassAddressBook_1.AddressBook();
@@ -37,6 +47,7 @@ const addressBookFunction = () => {
         console.log("1: Add Contact");
         console.log("2: Edit Contact");
         console.log("3: Delete Contact");
+        console.log("4: Add Multiple Contacts");
         const operation = parseInt(readline_sync_1.default.question("Choose: "));
         switch (operation) {
             case 0:
@@ -55,6 +66,9 @@ const addressBookFunction = () => {
                 let nameToDelete = deleteContact();
                 addressBook.deleteContact(nameToDelete);
                 break;
+            case 4:
+                let multipleContacts = addMultipleContacts();
+                addressBook.addMultipleContacts(multipleContacts);
         }
     }
 };

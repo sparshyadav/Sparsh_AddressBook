@@ -58,5 +58,11 @@ class AddressBook {
         this.addressBook = newContactsList;
         console.log("Contact Edited Successfully");
     }
+    addMultipleContacts(multipleContacts) {
+        multipleContacts.forEach((contact) => {
+            this.addContant(contact);
+        });
+        console.log("Multiple Contacts Added Successfully");
+    }
 }
 exports.AddressBook = AddressBook;
