@@ -10,3 +10,4 @@
 - UseCase 10: Ability to Get Mumber of Contact Persons i.e. Count by City or State.
 - UseCase 11: Ability to Sort the Entries in the Address Book Alphabetically by Person’s Name.
 - UseCase 12: Ability to Sort the Entries in the Address Book by City, State, or Zip.
+- UseCase 13: Ability to Read or Write the Address Book with Persons Contact into a File using File IO.
